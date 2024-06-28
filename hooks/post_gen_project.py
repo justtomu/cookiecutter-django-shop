@@ -156,8 +156,7 @@ def append_to_gitignore_file(s):
 
 
 def pipenv_to_requirements():
-    print('debug', subprocess.check_output(['pipenv', 'run', 'pip', 'freeze']))
-    subprocess.check_call(['pipenv', 'lock'])
+    subprocess.check_call(['pipenv', 'lock', '--pre', '--clear'])
     ret = subprocess.check_output(['pipenv', 'requirements'])
     with open('requirements.txt', 'w') as fh:
         fh.write(ret.decode('utf-8'))
